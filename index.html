@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FORM / Workout Architect</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap');
+:root{--bg:#090d12;--panel:#121922;--panel2:#171f29;--line:#28323d;--muted:#83909f;--text:#edf3f7;--lime:#c4f36a;--accent:#89d7ef}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans','Noto Sans JP',sans-serif}button,select{font:inherit}button{cursor:pointer}header{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw}.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:800;letter-spacing:2px}.brandmark{width:34px;height:34px;background:var(--lime);color:#111;border-radius:10px;display:grid;place-items:center;font-size:20px}.topright{font-size:11px;letter-spacing:2px;color:var(--muted)}.topright b{color:var(--lime)}main{max-width:1500px;margin:auto;padding:35px 5vw 65px}.intro{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}.eyebrow{color:var(--lime);font-size:11px;letter-spacing:3px;font-weight:800}.intro h1{font-size:clamp(28px,4vw,52px);margin:8px 0;letter-spacing:-1.7px}.intro p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}.version{border:1px solid var(--line);padding:9px 13px;border-radius:30px;color:var(--muted);font-size:11px}.layout{display:grid;grid-template-columns:minmax(250px,1fr) minmax(320px,1.25fr) minmax(280px,1fr);gap:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;min-width:0}.sectionhead{padding:22px 23px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.sectionhead strong{font-size:14px}.sectionhead span{font-size:10px;letter-spacing:1px;color:var(--muted)}.content{padding:22px}.label{font-size:11px;color:var(--muted);letter-spacing:1.2px;font-weight:700;margin-bottom:12px}.freq{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.freq button,.toggle button{background:var(--panel2);border:1px solid var(--line);color:#b7c2ce;border-radius:9px;padding:13px 0;font-size:13px;font-weight:800}.freq button.active,.toggle button.active{background:var(--lime);border-color:var(--lime);color:#111}.recommend{background:#1c2925;border:1px solid #40523c;border-radius:12px;padding:17px;margin-top:22px}.recommend small{font-size:10px;color:var(--lime);font-weight:800;letter-spacing:1.5px}.recommend h2{font-size:19px;margin:9px 0}.recommend p{font-size:12px;color:#b5c8b1;line-height:1.8;margin:0}.schedule{margin-top:22px}.day{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.daynum{width:40px;flex:none;color:var(--lime);font-weight:800;font-size:12px}.day strong{display:block;font-size:12px;margin-bottom:5px}.day span{color:var(--muted);font-size:11px;line-height:1.5}.hint{margin-top:20px;color:var(--muted);font-size:11px;line-height:1.8}.modelPanel{background:radial-gradient(ellipse at 50% 40%,#1d2b32 0%,#111922 54%,#111820 100%);overflow:hidden}.modeltop{display:flex;justify-content:space-between;align-items:center;padding:20px 23px 0}.modeltop strong{font-size:14px}.modeltop span{font-size:10px;color:var(--lime);letter-spacing:1px}.modelwrap{height:490px;display:flex;justify-content:center;align-items:center;position:relative;user-select:none;touch-action:pan-y;cursor:grab}.modelwrap:active{cursor:grabbing}.modelwrap:before{content:'';position:absolute;width:280px;height:280px;border:1px solid #2b3c42;border-radius:50%;top:80px;left:50%;transform:translateX(-50%);box-shadow:0 0 0 65px #ffffff03,0 0 0 130px #ffffff02;pointer-events:none}.modelwrap:after{content:'INTERACTIVE MUSCLE MAP';position:absolute;bottom:12px;font-size:10px;letter-spacing:2px;color:#647b81;pointer-events:none}svg#body{height:460px;width:100%;max-width:380px;position:relative;filter:drop-shadow(0 18px 25px #0008)}.muscle{fill:#40515b;stroke:#101922;stroke-width:3;stroke-linejoin:round;transition:fill .16s;cursor:pointer}.muscle:hover{fill:#81b5a4}.muscle.active{fill:var(--lime)}.bodybase{fill:#2c3c45;stroke:#101922;stroke-width:3}.detail{fill:none;stroke:#637680;stroke-width:1.2;opacity:.5;pointer-events:none}.hidden{display:none}.modelcontrols{display:flex;align-items:center;justify-content:center;gap:12px;padding:0 15px 20px}.round{width:37px;height:37px;border:1px solid #3d5057;border-radius:50%;background:#1a2830;color:#dbe8e7;font-size:20px}.toggle{display:flex;gap:5px;background:#1a2830;padding:4px;border-radius:11px}.toggle button{padding:10px 22px;font-size:11px}.modelnote{text-align:center;color:var(--muted);font-size:11px;padding:0 10px 23px}.muscleTags{display:flex;flex-wrap:wrap;gap:8px;padding:0 23px 23px}.muscleTags button{background:#1c2731;border:1px solid #33434d;color:#bdcbd5;padding:8px 11px;border-radius:20px;font-size:11px}.muscleTags button.active{border-color:var(--lime);color:var(--lime)}.rightcontent{padding:24px}.selection{color:var(--lime);font-size:10px;letter-spacing:2px;font-weight:800}.rightcontent h2{font-size:30px;margin:10px 0 7px}.sub{font-size:12px;color:var(--muted);line-height:1.8}.metric{display:flex;gap:10px;margin:23px 0}.metric div{flex:1;background:#1a2530;border:1px solid var(--line);border-radius:11px;padding:12px 10px}.metric small{display:block;font-size:10px;color:var(--muted);margin-bottom:6px}.metric strong{font-size:13px}.exerciseTitle{font-size:11px;letter-spacing:1.3px;color:var(--muted);margin:25px 0 12px;font-weight:800}.exercise{padding:14px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}.exnum{width:30px;height:30px;display:grid;place-items:center;background:#273529;color:var(--lime);font-size:12px;border-radius:8px;flex:none;font-weight:800}.exercise strong{font-size:13px;display:block;margin:0 0 5px}.exercise p{font-size:11px;color:var(--muted);margin:0;line-height:1.7}.advice{margin-top:20px;background:#1b2732;border-left:3px solid var(--accent);padding:15px;font-size:11px;color:#b9d0df;line-height:1.9}.footer{padding-top:30px;text-align:center;color:#5c6d78;font-size:10px;letter-spacing:1px}@media(max-width:1100px){.layout{grid-template-columns:1fr 1fr}.modelPanel{grid-column:1}.rightPanel{grid-column:2}.planPanel{grid-column:1/-1;grid-row:2}}@media(max-width:720px){header{padding:0 18px}.topright{display:none}main{padding:26px 14px}.intro{align-items:start}.version{display:none}.layout{display:flex;flex-direction:column}.modelPanel{order:0}.rightPanel{order:1}.planPanel{order:2}.modelwrap{height:440px}svg#body{height:415px}.intro h1{font-size:30px}}
+
+/* V2: Dark vigilante-inspired training interface */
+:root{--lime:#79d9ff;--accent:#f3c75b;--panel:#101a29;--panel2:#19283c;--line:#31445b}
+body{background:radial-gradient(circle at 50% 0%,#172b43,#070c15 60%)}
+.brandmark{background:#f3c75b;clip-path:polygon(0 0,35% 15%,50% 0,65% 15%,100% 0,90% 100%,10% 100%)}
+.modelPanel{background:radial-gradient(ellipse at center,#22354c,#0a1321 75%)}
+#body .bodybase{fill:#33475e!important;stroke:#7c96b2;stroke-width:1}
+#body .muscle{transition:fill .18s,filter .18s;stroke:#07111e;stroke-width:1.5}
+#body .muscle.active{fill:#f3c75b!important;filter:drop-shadow(0 0 8px #f3c75b)}
+.exercise{cursor:pointer;transition:background .2s,border-color .2s}
+.exercise:hover,.exercise.ex-selected{background:#243b53;border-color:#79d9ff}
+.exercise:focus-visible{outline:2px solid #79d9ff}
+.coach-card{margin-top:14px;border:1px solid #496581;background:#12263c;padding:17px;border-radius:12px;line-height:1.8}
+.coach-card h3{margin:0 0 9px;color:#f3c75b;font-size:15px}
+.coach-card p{font-size:12px;color:#d5e3f1;margin:7px 0}
+.extended{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+.extended .wide{grid-column:1/-1}
+.extended .panel{padding:23px}
+.extended h2{font-size:18px;margin:0 0 14px}
+.extended h3{font-size:13px;color:#f3c75b;margin:18px 0 8px}
+.extended p,.extended li{font-size:12px;color:#b5c6d8;line-height:1.8}
+.controls{display:flex;flex-wrap:wrap;gap:12px;margin:15px 0}
+.field{display:flex;flex-direction:column;gap:6px;flex:1 1 125px;font-size:11px;color:#aabdd3}
+.field input,.field select{min-width:0;width:100%;background:#091424;border:1px solid #405a75;border-radius:8px;color:#fff;padding:11px;font-size:14px}
+.action{background:#f3c75b;border:0;color:#111b29;border-radius:8px;padding:12px 17px;font-weight:800}
+.result{background:#0a1727;border:1px solid #344b66;padding:16px;border-radius:12px;margin-top:14px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi{padding:12px;background:#182b41;border-radius:9px}
+.kpi b{font-size:19px;color:#f3c75b;display:block}
+.kpi span{font-size:10px;color:#aabdd3}
+.meal{padding:12px 0;border-bottom:1px solid #2c4056}
+.meal b{font-size:13px;color:#e7f0ff}
+.note{font-size:11px!important;color:#9bb0c7!important}
+.gym-options{display:flex;flex-wrap:wrap;gap:8px}
+.gym-options button{border:1px solid #46627d;border-radius:8px;background:#172a41;color:#dce9f5;padding:11px}
+.gym-options button.active{background:#f3c75b;color:#111}
+#body{filter:drop-shadow(0 8px 15px #0008)}
+@media(max-width:900px){.extended{grid-template-columns:1fr}.extended .wide{grid-column:auto}}
+@media(max-width:480px){.kpis{grid-template-columns:1fr 1fr}}
+
+.chain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:15px}.chain-card{background:#14243a;border:1px solid #344d68;border-radius:12px;padding:15px}.chain-card h3{margin:0 0 7px;color:#f3c75b}.chain-card p{margin:7px 0}.chain-card a{color:#79d9ff;font-size:12px}.chain-card .pill{display:inline-block;border:1px solid #496581;border-radius:20px;padding:3px 8px;font-size:10px;color:#c9d9e8}.food-select{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.food-select button{border:1px solid #46627d;border-radius:8px;background:#172a41;color:#dce9f5;padding:10px 13px}.food-select button.active{background:#f3c75b;color:#111}.chain-card .small{font-size:11px;color:#9bb0c7}
+.catalog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:13px;margin-top:16px}.catalog-card{background:#0b1929;border:1px solid #30475e;border-radius:14px;padding:18px}.catalog-card h3{font-size:17px!important;color:#eaf4ff!important;margin:8px 0!important}.catalog-card p{margin:7px 0}.catalog-card .meta{font-size:11px;color:#f3c75b;font-weight:700}.catalog-card a{display:inline-block;margin-top:10px;color:#79d9ff;text-decoration:none;font-size:12px;font-weight:700}.catalog-card a:hover{text-decoration:underline}.catalog-card .tags{font-size:11px;color:#8ca9c3}.chain-card ul{padding-left:18px;margin:10px 0}.chain-card li{font-size:12px;line-height:1.75;color:#c6d7e6}.chain-card .menu-name{font-weight:800;color:#f3c75b}#restaurantPanel .chain-card{min-height:230px}
+/* V4 convenience and protein guide */
+.v4-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px}
+.v4-card{background:#142338;border:1px solid #354b64;border-radius:13px;padding:17px;min-width:0}
+.v4-card h3{margin:8px 0;color:#f3c75b;font-size:15px}.v4-card p{margin:7px 0;font-size:12px;line-height:1.85;color:#c3d1e0}
+.v4-tag{font-size:10px;display:inline-block;border:1px solid #54718d;border-radius:15px;padding:4px 9px;color:#9fdfff;margin:2px}
+.v4-card a{color:#9fdfff;overflow-wrap:anywhere;font-size:12px}
+.v4-note{padding:13px;border-left:3px solid #f3c75b;background:#1d2a38;margin-top:14px;font-size:12px;line-height:1.9;color:#d3dfeb}
+.v4-compare{width:100%;border-collapse:collapse;font-size:12px;min-width:590px}.v4-compare th,.v4-compare td{padding:11px;border-bottom:1px solid #34485f;text-align:left;vertical-align:top}.v4-compare th{color:#f3c75b}.v4-table-scroll{overflow-x:auto}
+</style></head><body><header><div class="brand"><div class="brandmark">F</div>NIGHT<span style="color:var(--lime)">FORM.</span></div><div class="topright"><b>●</b> TRAINING DESIGN SYSTEM / 001</div></header><main><div class="intro"><div><div class="eyebrow">BUILD YOUR BODY, INTELLIGENTLY</div><h1>DARK <span style="color:var(--lime)">TRAINING LAB.</span></h1><p>人体モデルから鍛えたい部位を選択。あなたの生活に合ったトレーニング分割を設計。</p></div><div class="version">INTERACTIVE PROTOTYPE · V3.0</div></div><div class="layout">
+<section class="panel planPanel"><div class="sectionhead"><strong>トレーニングプラン</strong><span>01 / PLAN</span></div><div class="content"><div class="label">週に何回ジムに行けますか？</div><div class="freq" id="freq"></div><div class="recommend"><small>✦ RECOMMENDED SPLIT</small><h2 id="splitName"></h2><p id="splitDesc"></p></div><div class="schedule" id="schedule"></div><div class="hint">※ これは一般的なプラン例です。経験・回復力・目的に合わせてセット数や休養日を調整してください。</div></div></section>
+<section class="panel modelPanel"><div class="modeltop"><strong>マッスルマップ</strong><span>● SELECT A MUSCLE</span></div><div class="modelwrap" id="modelwrap"><svg id="body" viewBox="0 0 300 480" role="img" aria-label="部位をクリックして選択できる人体筋肉モデル"><g id="front"><path d="M127 28 L128 5 L143 23 L157 23 L172 5 L173 28" fill="#192b42" stroke="#f3c75b" stroke-width="3"/><path d="M128 67 L172 67 L167 79 L133 79 Z" fill="#14243b" stroke="#7395b7"/>
+<ellipse class="bodybase" cx="150" cy="54" rx="29" ry="36"/><path class="bodybase" d="M137 83 L163 83 170 103 130 103Z"/>
+<path class="muscle" data-muscle="shoulders" d="M129 100 Q104 91 91 107 L74 134 88 154 108 143 124 126Z"/><path class="muscle" data-muscle="shoulders" d="M171 100 Q196 91 209 107 L226 134 212 154 192 143 176 126Z"/>
+<path class="muscle" data-muscle="chest" d="M130 103 Q150 110 148 151 L113 161 Q101 151 108 129Z"/><path class="muscle" data-muscle="chest" d="M170 103 Q150 110 152 151 L187 161 Q199 151 192 129Z"/>
+<path class="muscle" data-muscle="biceps" d="M76 137 L90 153 82 204 65 201 61 169Z"/><path class="muscle" data-muscle="biceps" d="M224 137 L210 153 218 204 235 201 239 169Z"/>
+<path class="muscle" data-muscle="forearms" d="M65 204 L82 207 71 274 56 269Z"/><path class="muscle" data-muscle="forearms" d="M235 204 L218 207 229 274 244 269Z"/>
+<path class="bodybase" d="M56 268 L71 272 72 297 62 310 53 295Z"/><path class="bodybase" d="M244 268 L229 272 228 297 238 310 247 295Z"/>
+<path class="muscle" data-muscle="abs" d="M115 164 L147 156 147 244 124 244 113 207Z"/><path class="muscle" data-muscle="abs" d="M153 156 L185 164 187 207 176 244 153 244Z"/>
+<path class="muscle" data-muscle="abs" d="M110 159 L116 160 124 244 110 235 101 185Z"/><path class="muscle" data-muscle="abs" d="M190 159 L184 160 176 244 190 235 199 185Z"/>
+<path class="bodybase" d="M123 246 L177 246 184 275 150 301 116 275Z"/>
+<path class="muscle" data-muscle="quads" d="M119 276 L148 301 146 372 130 391 112 361 108 313Z"/><path class="muscle" data-muscle="quads" d="M181 276 L152 301 154 372 170 391 188 361 192 313Z"/>
+<path class="bodybase" d="M130 391 L146 375 145 402 130 411Z"/><path class="bodybase" d="M170 391 L154 375 155 402 170 411Z"/>
+<path class="muscle" data-muscle="calves" d="M130 413 L145 406 141 454 128 463 120 452Z"/><path class="muscle" data-muscle="calves" d="M170 413 L155 406 159 454 172 463 180 452Z"/>
+<path class="bodybase" d="M128 461 L141 454 145 475 120 475Z"/><path class="bodybase" d="M172 461 L159 454 155 475 180 475Z"/>
+<path class="detail" d="M150 159V244 M117 186H146 M154 186H183 M119 207H146 M154 207H181 M123 225H146 M154 225H177"/>
+</g><g id="back" class="hidden"><path d="M127 28 L128 5 L143 23 L157 23 L172 5 L173 28" fill="#192b42" stroke="#f3c75b" stroke-width="3"/><ellipse class="bodybase" cx="150" cy="54" rx="29" ry="36"/><path class="bodybase" d="M137 83 L163 83 170 103 130 103Z"/>
+<path class="muscle" data-muscle="traps" d="M132 93 L150 112 168 93 193 113 173 139 127 139 107 113Z"/>
+<path class="muscle" data-muscle="shoulders" d="M108 108 Q89 96 76 128 L86 156 110 145 126 125Z"/><path class="muscle" data-muscle="shoulders" d="M192 108 Q211 96 224 128 L214 156 190 145 174 125Z"/>
+<path class="muscle" data-muscle="triceps" d="M76 140 L90 158 82 206 64 202 60 172Z"/><path class="muscle" data-muscle="triceps" d="M224 140 L210 158 218 206 236 202 240 172Z"/>
+<path class="muscle" data-muscle="forearms" d="M64 205 L82 208 71 274 56 269Z"/><path class="muscle" data-muscle="forearms" d="M236 205 L218 208 229 274 244 269Z"/>
+<path class="bodybase" d="M56 268 L71 272 72 297 62 310 53 295Z"/><path class="bodybase" d="M244 268 L229 272 228 297 238 310 247 295Z"/>
+<path class="muscle" data-muscle="back" d="M126 137 L148 143 148 226 125 239 103 189 108 150Z"/><path class="muscle" data-muscle="back" d="M174 137 L152 143 152 226 175 239 197 189 192 150Z"/>
+<path class="muscle" data-muscle="lowerback" d="M127 238 L148 228 148 276 119 271 115 251Z"/><path class="muscle" data-muscle="lowerback" d="M173 238 L152 228 152 276 181 271 185 251Z"/>
+<path class="muscle" data-muscle="glutes" d="M119 273 L149 277 148 309 126 319 109 298Z"/><path class="muscle" data-muscle="glutes" d="M181 273 L151 277 152 309 174 319 191 298Z"/>
+<path class="muscle" data-muscle="hamstrings" d="M112 317 L127 324 147 313 146 383 130 398 112 369Z"/><path class="muscle" data-muscle="hamstrings" d="M188 317 L173 324 153 313 154 383 170 398 188 369Z"/>
+<path class="bodybase" d="M130 398 L146 385 145 410 130 414Z"/><path class="bodybase" d="M170 398 L154 385 155 410 170 414Z"/>
+<path class="muscle" data-muscle="calves" d="M130 415 L145 411 141 454 128 463 120 452Z"/><path class="muscle" data-muscle="calves" d="M170 415 L155 411 159 454 172 463 180 452Z"/>
+<path class="bodybase" d="M128 461 L141 454 145 475 120 475Z"/><path class="bodybase" d="M172 461 L159 454 155 475 180 475Z"/>
+<path class="detail" d="M150 145V276 M116 180L147 210 M184 180L153 210"/>
+</g></svg></div><div class="modelcontrols"><button class="round" id="left" aria-label="回転">↶</button><div class="toggle"><button class="active" id="frontBtn">FRONT</button><button id="backBtn">BACK</button></div><button class="round" id="right" aria-label="回転">↷</button></div><div class="modelnote">ダークヒーロー風オリジナル装甲モデル · 部位を選択 · 左右ドラッグで前後を切替</div><div class="muscleTags" id="tags"></div></section>
+<section class="panel rightPanel"><div class="sectionhead"><strong>部位別トレーニング</strong><span>02 / EXERCISES</span></div><div class="rightcontent"><div class="selection">● MUSCLE SELECTED</div><h2 id="muscleName">胸</h2><div class="sub" id="muscleDesc"></div><div class="metric"><div><small>推奨頻度</small><strong id="muscleFreq"></strong></div><div><small>目安セット数</small><strong id="muscleSets"></strong></div></div><div class="exerciseTitle">RECOMMENDED EXERCISES</div><div id="exercises"></div><div class="advice" id="advice"></div></div></section>
+</div>
+<div class="extended">
+<section class="panel" id="gymPanel"><div class="eyebrow">03 / GYM FINDER</div><h2>ジム環境からおすすめを選ぶ</h2><p>利用できる設備・予算感からジムのタイプと適した種目を案内します。実店舗の空き状況・料金は未確認です。</p><div class="gym-options" id="gymOptions"></div><div id="gymResult" class="result"></div></section>
+<section class="panel wide" id="restaurantPanel"><div class="eyebrow">04 / EAT OUT GUIDE</div><h2>おすすめ外食チェーン＆メニュー</h2><p>減量・維持・増量に合わせて、外食での選び方を紹介。具体的なカロリーやPFCは公式栄養情報を確認してください。</p><div class="food-select" id="foodGoals"></div><div class="chain-grid" id="restaurantResults"></div><p class="note">※ 店舗・時期によって提供メニューや栄養情報が異なります。下記は注文の組み合わせ例であり、各社が推奨するメニューではありません。</p></section>
+<section class="panel" id="strengthPanel"><div class="eyebrow">04 / STRENGTH CHECK</div><h2>挙上重量の目安</h2><div class="controls"><label class="field">体重 (kg)<input id="liftWeight" type="number" value="70" min="30" max="250"></label><label class="field">種目<select id="liftType"><option value="bench">ベンチプレス</option><option value="squat">スクワット</option><option value="deadlift">デッドリフト</option></select></label><label class="field">経験<select id="liftExperience"><option value="beginner">初心者</option><option value="intermediate">中級者</option><option value="advanced">上級者</option></select></label></div><button class="action" id="liftCalc">目安を見る</button><div class="result" id="liftResult"></div><p class="note">※ 数値はこのアプリ独自の例示的な体重倍率であり、公式基準・安全な目標重量ではありません。1RMを試す必要はありません。</p></section>
+<section class="panel wide" id="gearPanel"><div class="eyebrow">05 / TRAINING GEAR GUIDE</div><h2>おすすめトレーニングギア</h2><p>パワーグリップ・リストラップ・ベルト・ニースリーブ・ストラップを用途と予算から比較。価格は購入予算の目安で、各商品の実売価格を保証するものではありません。</p><div class="controls"><label class="field">ギアの種類<select id="gearCategory"><option value="all">すべて</option><option value="grip">パワーグリップ・ストラップ</option><option value="belt">トレーニングベルト</option><option value="wrap">リストラップ・サポーター</option><option value="sleeve">ニースリーブ</option><option value="accessory">その他</option></select></label><label class="field">購入予算<select id="gearBudget"><option value="all">すべて</option><option value="3000">〜3,000円</option><option value="6000">〜6,000円</option><option value="10000">〜10,000円</option><option value="20000">〜20,000円</option><option value="999999">20,000円以上も含む</option></select></label></div><div class="catalog-grid" id="gearResults"></div><p class="note">※ 表示の価格帯は製品ジャンル別の参考予算。実際の販売価格・サイズ・送料・競技規定は公式サイトで確認してください。サポートギアは痛みや怪我を治療するものではありません。</p></section>
+<section class="panel wide" id="wearPanel"><div class="eyebrow">06 / GLOBAL TRAINING WEAR</div><h2>トレーニングウェア ブランド図鑑</h2><p>日本・アメリカ・イギリス・オーストラリアなどのブランドを比較。オーバーサイズ、ボディビル、コンプレッション、レギンス、普段着兼用などのスタイルから選べます。</p><div class="controls"><label class="field">スタイル<select id="wearStyle"><option value="all">すべて</option><option value="bodybuilding">ボディビル・オーバーサイズ</option><option value="performance">機能性・パフォーマンス</option><option value="women">レディース・レギンス</option><option value="street">ストリート・ライフスタイル</option></select></label><label class="field">予算目安（1着）<select id="wearBudget"><option value="all">すべて</option><option value="4000">〜4,000円</option><option value="8000">〜8,000円</option><option value="12000">〜12,000円</option><option value="999999">12,000円以上も含む</option></select></label><label class="field">ブランド名検索<input id="wearSearch" type="search" placeholder="例：Gymshark / YoungLA"></label></div><div class="catalog-grid" id="wearResults"></div><p class="note">※ 価格帯はTシャツ・トップスなど1着あたりの参考予算。商品・セール・為替・国際送料・関税により大きく異なります。公式サイトで日本配送の可否を確認してください。</p></section>
+<section class="panel wide" id="nutritionPanel"><div class="eyebrow">05 / NUTRITION BUILDER</div><h2>減量・維持・増量の食事プラン</h2><p>年齢・性別・身長・体重・活動量から基礎代謝と推定消費カロリーを計算。一般的な食事例を自動生成します。</p><div class="controls"><label class="field">年齢<input id="age" type="number" value="25" min="18" max="90"></label><label class="field">計算式の性別係数<select id="sex"><option value="male">男性係数</option><option value="female">女性係数</option></select></label><label class="field">身長 (cm)<input id="height" type="number" value="170" min="120" max="230"></label><label class="field">体重 (kg)<input id="weight" type="number" value="70" min="30" max="250"></label><label class="field">活動量<select id="activity"><option value="1.2">低い（ほぼ座り仕事）</option><option value="1.375">軽い（週1〜3回運動）</option><option value="1.55" selected>中程度（週3〜5回運動）</option><option value="1.725">高い（週6〜7回運動）</option></select></label><label class="field">目的<select id="goal"><option value="cut">減量</option><option value="maintain">維持</option><option value="bulk">増量</option></select></label></div><button class="action" id="nutritionCalc">食事プランを作成</button><div class="result" id="nutritionResult" aria-live="polite"></div><p class="note">※ Mifflin–St Jeor式による推定です。活動係数と食事の栄養値には誤差があります。未成年、妊娠・授乳中、持病・摂食に関する不安がある場合は個別の専門的評価が必要です。</p></section>
+<section class="panel wide"><div class="eyebrow">06 / RECOVERY & WELLNESS</div><h2>コンディション別おすすめ食材</h2><div class="gym-options" id="wellnessOptions"></div><div class="result" id="wellnessResult"></div><p class="note">※ 食品はむくみなどの症状を必ず治すものではありません。突然のむくみ、片脚だけの腫れ、息切れ、胸痛、長引く全身のむくみは医療機関で相談してください。</p></section>
+</div>
+
+<section class="panel wide" id="conveniencePanel"><div class="eyebrow">09 / CONVENIENCE FOOD FINDER</div><h2>コンディション別・コンビニで選ぶ食品</h2><p>セブン‐イレブン、ローソン、ファミリーマートの食品例を目的別に探せます。実際の商品名を確認できたものと、一般的な食品カテゴリを区別して表示します。</p>
+<div class="controls"><label class="field">コンビニ<select id="cvStore"><option value="all">すべて</option><option value="seven">セブン‐イレブン</option><option value="lawson">ローソン</option><option value="family">ファミリーマート</option></select></label><label class="field">悩み・目的<select id="cvGoal"><option value="all">すべて</option><option value="swelling">むくみ・塩分が気になる</option><option value="constipation">便通・お腹の張り</option><option value="fatigue">疲労・運動後</option><option value="iron">鉄分が気になる</option><option value="protein">筋肥大・たんぱく質</option><option value="cut">減量中</option></select></label></div>
+<div id="cvResults" class="v4-grid"></div><div id="cvAdvice" class="v4-note"></div><p class="note">※ 店舗・地域・時期によって取扱いが変わります。塩分や栄養成分は商品ラベルを確認。むくみや便秘は食品だけで治るとは限りません。</p></section>
+<section class="panel wide" id="proteinPanel"><div class="eyebrow">10 / PROTEIN SELECTOR</div><h2>プロテイン完全ガイド・タイプ診断</h2><p>原料・製法・乳糖・価格・飲みやすさを比較。お腹が張りやすい人や乳製品が合わない人向けの選び方も確認できます。</p>
+<div class="controls"><label class="field">1kgあたりの予算<select id="proBudget"><option value="0">予算指定なし</option><option value="3000">3,000円以下</option><option value="5000">5,000円以下</option><option value="8000">8,000円以下</option><option value="12000">12,000円以下</option></select></label><label class="field">お腹の状態<select id="proStomach"><option value="normal">特に問題なし</option><option value="lactose">牛乳でお腹がゴロゴロする</option><option value="sensitive">ガス・膨満感が気になる</option><option value="allergy">牛乳アレルギーがある</option></select></label><label class="field">重視すること<select id="proPriority"><option value="cost">コストパフォーマンス</option><option value="digest">お腹への配慮</option><option value="plant">植物性</option><option value="slow">腹持ち・ゆっくり吸収</option></select></label></div>
+<button class="action" id="proDiagnose">おすすめタイプを診断</button><div id="proResult" class="result" aria-live="polite"></div>
+<h3>6種類のプロテインを比較</h3><div class="v4-table-scroll"><table class="v4-compare"><thead><tr><th>種類</th><th>特徴</th><th>乳糖・アレルギー</th><th>参考予算 / 1kg</th><th>向いている人</th></tr></thead><tbody id="proTypes"></tbody></table></div>
+<h3>購入前に確認するポイント</h3><div class="v4-grid" id="proChecklist"></div><div class="v4-note">価格は製品ごとの実売価格ではなく比較用の大まかな参考帯です。たんぱく質含有率・原材料・甘味料・第三者認証は製品ごとに異なります。乳アレルギーは乳糖不耐症とは異なり、WPIやWPHでも乳由来のため避ける必要があります。</div>
+</section>
+<div class="footer">FORM WORKOUT ARCHITECT · ORIGINAL INTERACTIVE ANATOMY · EDUCATIONAL DEMO</div></main><script>
+const muscles={chest:{name:'胸',desc:'大胸筋。押す動作の中心となる筋群。上部・中部などを意識して種目を選ぼう。',freq:'週2回程度',sets:'週10〜16セット',ex:[['インクラインダンベルプレス','3セット × 6〜10回｜大胸筋上部'],['チェストプレス','3セット × 8〜12回｜安定したプレス'],['ケーブルフライ','2〜3セット × 10〜15回｜収縮重視']],tip:'肩をすくめず、痛みのない可動域でコントロールして動かそう。'},back:{name:'背中',desc:'広背筋や大円筋など。引く動作と背中の広がりに関わる。',freq:'週2回程度',sets:'週10〜16セット',ex:[['ラットプルダウン','3セット × 8〜12回｜縦に引く'],['チェストサポートロー','3セット × 8〜12回｜横に引く'],['ワンハンドロー','2〜3セット × 10〜12回｜片側ずつ']],tip:'腕だけで引かず、肘を腰に近づける意識で動かそう。'},shoulders:{name:'肩',desc:'三角筋の前部・中部・後部。肩の立体感と上半身のシルエットに重要。',freq:'週2回程度',sets:'週8〜14セット',ex:[['サイドレイズ','3セット × 12〜20回｜中部'],['ショルダープレス','3セット × 6〜10回｜前部・中部'],['リアデルトフライ','3セット × 12〜20回｜後部']],tip:'肩に痛みがある場合は無理にプレスせず、可動域と負荷を調整。'},biceps:{name:'上腕二頭筋',desc:'肘を曲げる動作や前腕の回外に関わる。',freq:'週1〜2回',sets:'週6〜12セット',ex:[['インクラインカール','3セット × 8〜12回｜伸張重視'],['プリーチャーカール','3セット × 10〜12回｜安定性'],['ハンマーカール','2セット × 10〜15回｜腕橈骨筋も']],tip:'反動を使いすぎず、肘の位置を安定させよう。'},triceps:{name:'上腕三頭筋',desc:'肘を伸ばす動作を担当。上腕のボリュームに大きく関わる。',freq:'週1〜2回',sets:'週6〜12セット',ex:[['ケーブルプレスダウン','3セット × 10〜15回'],['オーバーヘッドエクステンション','3セット × 10〜15回'],['ナロープレス','2セット × 6〜10回']],tip:'肘の違和感が出ない軌道を優先しよう。'},forearms:{name:'前腕',desc:'握力・手首の動作に関わる筋群。',freq:'週1〜2回',sets:'週4〜8セット',ex:[['リストカール','2セット × 12〜20回'],['リバースカール','2セット × 10〜15回'],['ファーマーズキャリー','2〜3回 × 30秒']],tip:'引く種目でも刺激が入るため、疲労を見ながら追加しよう。'},abs:{name:'腹筋',desc:'腹直筋・腹斜筋。体幹の安定と姿勢維持に関わる。',freq:'週2〜3回',sets:'週6〜12セット',ex:[['ケーブルクランチ','3セット × 10〜15回'],['リバースクランチ','3セット × 10〜15回'],['サイドプランク','2セット × 30〜45秒']],tip:'腰を反らしすぎず、呼吸と体幹のコントロールを意識。'},quads:{name:'大腿四頭筋',desc:'太ももの前側。膝を伸ばす動作の主役。',freq:'週1〜2回',sets:'週8〜14セット',ex:[['スクワット','3セット × 6〜10回'],['レッグプレス','3セット × 10〜15回'],['レッグエクステンション','3セット × 12〜15回']],tip:'深さよりも、痛みのない範囲で安定したフォームを優先。'},hamstrings:{name:'ハムストリングス',desc:'太ももの裏側。股関節を伸ばし、膝を曲げる動作に関わる。',freq:'週1〜2回',sets:'週6〜12セット',ex:[['ルーマニアンデッドリフト','3セット × 6〜10回'],['シーテッドレッグカール','3セット × 10〜15回'],['ライイングレッグカール','2セット × 10〜15回']],tip:'腰を丸めず、股関節から動かす。既往の痛みがある場合は慎重に。'},glutes:{name:'臀部',desc:'大臀筋を中心とするお尻の筋群。股関節の伸展と安定に重要。',freq:'週1〜2回',sets:'週8〜14セット',ex:[['ヒップスラスト','3セット × 8〜12回'],['ブルガリアンスクワット','3セット × 8〜12回'],['ケーブルキックバック','2セット × 12〜15回']],tip:'腰を反るのではなく、股関節を伸ばす意識で。'},calves:{name:'ふくらはぎ',desc:'腓腹筋・ヒラメ筋。足首の底屈や歩行を支える。',freq:'週2〜3回',sets:'週6〜12セット',ex:[['スタンディングカーフレイズ','3セット × 10〜15回'],['シーテッドカーフレイズ','3セット × 12〜20回'],['片脚カーフレイズ','2セット × 12〜15回']],tip:'反動を抑え、下で伸ばし上で止める。'},traps:{name:'僧帽筋',desc:'首から背中上部に広がり、肩甲骨の動きを助ける。',freq:'週1〜2回',sets:'週6〜10セット',ex:[['ダンベルシュラッグ','3セット × 10〜15回'],['フェイスプル','3セット × 12〜20回'],['チェストサポートロー','3セット × 8〜12回']],tip:'首に力を入れすぎず、肩甲骨をコントロール。'},lowerback:{name:'脊柱起立筋',desc:'背骨を支え、体幹を安定させる背面の筋群。',freq:'週1〜2回',sets:'週4〜8セット',ex:[['バックエクステンション','2〜3セット × 10〜15回'],['バードドッグ','2セット × 左右10回'],['ヒップヒンジ練習','2セット × 10回']],tip:'腰に不安がある場合は、負荷を上げず専門家にフォームを確認してもらおう。'}};
+const splits={2:{name:'全身法 / FULL BODY',desc:'週2回なら全身を2回刺激。基本種目を中心に組む。',days:[['DAY 01','全身 A','スクワット・チェストプレス・ラットプル・腹筋'],['DAY 02','全身 B','レッグプレス・ローイング・ショルダープレス・腕']]},3:{name:'全身法 / FULL BODY',desc:'週3回は全身法が組みやすい。日ごとに種目を変えて疲労を分散。',days:[['DAY 01','全身 A','胸・背中・脚'],['DAY 02','全身 B','脚・肩・腕・体幹'],['DAY 03','全身 C','胸・背中・脚・弱点部位']]},4:{name:'上半身 / 下半身',desc:'週4回なら上下2分割。各部位を週2回刺激しやすい。',days:[['DAY 01','上半身 A','胸・背中・肩・腕'],['DAY 02','下半身 A','大腿四頭筋・ハム・臀部'],['DAY 03','上半身 B','背中・胸・肩・腕'],['DAY 04','下半身 B','脚・ふくらはぎ・腹筋']]},5:{name:'PUSH / PULL / LEGS',desc:'週5回はPPLを基本に上半身・下半身を追加する例。',days:[['DAY 01','PUSH','胸・肩前部・三頭筋'],['DAY 02','PULL','背中・肩後部・二頭筋'],['DAY 03','LEGS','脚・臀部・ふくらはぎ'],['DAY 04','UPPER','上半身全体'],['DAY 05','LOWER','下半身全体']]},6:{name:'PUSH / PULL / LEGS × 2',desc:'週6回はPPLを2周。高頻度なので疲労管理と休息が重要。',days:[['DAY 01','PUSH A','胸・肩・三頭筋'],['DAY 02','PULL A','背中・二頭筋'],['DAY 03','LEGS A','脚・臀部'],['DAY 04','PUSH B','胸・肩・三頭筋'],['DAY 05','PULL B','背中・二頭筋'],['DAY 06','LEGS B','脚・腹筋']]}};
+let selected='chest',frequency=4,view='front';const $=id=>document.getElementById(id);
+function renderPlan(){ $('freq').innerHTML=[2,3,4,5,6].map(n=>`<button class="${n===frequency?'active':''}" data-n="${n}">${n}日</button>`).join('');$('freq').style.gridTemplateColumns='repeat(5,1fr)';const s=splits[frequency];$('splitName').textContent=s.name;$('splitDesc').textContent=s.desc;$('schedule').innerHTML=s.days.map(d=>`<div class="day"><div class="daynum">${d[0]}</div><div><strong>${d[1]}</strong><span>${d[2]}</span></div></div>`).join('');$('freq').querySelectorAll('button').forEach(b=>b.onclick=()=>{frequency=+b.dataset.n;renderPlan()})}
+function renderMuscle(){const m=muscles[selected];$('muscleName').textContent=m.name;$('muscleDesc').textContent=m.desc;$('muscleFreq').textContent=m.freq;$('muscleSets').textContent=m.sets;$('exercises').innerHTML=m.ex.map((e,i)=>`<div class="exercise"><div class="exnum">0${i+1}</div><div><strong>${e[0]}</strong><p>${e[1]}</p></div></div>`).join('');$('advice').textContent='COACH TIP · '+m.tip;document.querySelectorAll('.muscle').forEach(el=>el.classList.toggle('active',el.dataset.muscle===selected));const shown=view==='front'?['chest','shoulders','biceps','forearms','abs','quads','calves']:['traps','shoulders','back','triceps','forearms','lowerback','glutes','hamstrings','calves'];$('tags').innerHTML=shown.map(k=>`<button data-muscle="${k}" class="${selected===k?'active':''}">${muscles[k].name}</button>`).join('');$('tags').querySelectorAll('button').forEach(b=>b.onclick=()=>selectMuscle(b.dataset.muscle))}
+function selectMuscle(m){selected=m;renderMuscle()}
+function setView(v){view=v;$('front').classList.toggle('hidden',v!=='front');$('back').classList.toggle('hidden',v!=='back');$('frontBtn').classList.toggle('active',v==='front');$('backBtn').classList.toggle('active',v==='back');renderMuscle()}
+$('frontBtn').onclick=()=>setView('front');$('backBtn').onclick=()=>setView('back');$('left').onclick=$('right').onclick=()=>setView(view==='front'?'back':'front');document.querySelectorAll('.muscle').forEach(el=>{el.addEventListener('click',()=>selectMuscle(el.dataset.muscle));el.setAttribute('tabindex','0');el.setAttribute('role','button');el.setAttribute('aria-label',muscles[el.dataset.muscle].name);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectMuscle(el.dataset.muscle)}})});let startX=null;$('modelwrap').addEventListener('pointerdown',e=>startX=e.clientX);$('modelwrap').addEventListener('pointerup',e=>{if(startX!==null&&Math.abs(e.clientX-startX)>45)setView(view==='front'?'back':'front');startX=null});renderPlan();setView('front');
+
+// --- V2 enhancements ---
+const technique = {
+'インクラインダンベルプレス':['ベンチ角度は15〜30度を目安に調整。','肩甲骨を安定させ、肘を極端に開かない。','反動を使わず下ろし、肩が痛む範囲を避ける。'],
+'チェストプレス':['座面を調整してグリップを胸の高さに。','肩をすくめず、胸を張りすぎて腰を反らない。','押し切る際も肘を強くロックしない。'],
+'ケーブルフライ':['肘を軽く曲げた角度で固定。','胸の前に腕を寄せる意識でゆっくり動かす。','肩が前に抜けるほど深く伸ばさない。'],
+'ラットプルダウン':['胸を軽く上げ、肩をすくめない。','バーを肘で引き下げる意識。','勢いよく上体を倒さない。'],
+'チェストサポートロー':['胸をパッドにつけ、反動を減らす。','肘を後ろへ引き、肩甲骨を動かす。','首を反らさない。'],
+'スクワット':['足幅とつま先の向きを自分に合う位置へ。','足裏全体で床を押す。','腰や膝に痛みが出る深さは避ける。'],
+'ルーマニアンデッドリフト':['膝を軽く曲げ、股関節を後ろへ引く。','重りを身体に近づけて動かす。','腰を丸めず、ハムストリングスの伸びを感じる範囲まで。'],
+'サイドレイズ':['肘を少し曲げ、肩をすくめない。','反動を使わず、軽めの重量で丁寧に。','痛みが出る高さまで無理に上げない。'],
+'ヒップスラスト':['あごを軽く引き、肋骨を開きすぎない。','かかとで床を押し、臀部を締める。','腰を反って持ち上げない。']
+};
+const originalRenderMuscle = renderMuscle;
+renderMuscle = function(){
+ originalRenderMuscle();
+ const cards = [...document.querySelectorAll('#exercises .exercise')];
+ cards.forEach((card,i)=>{
+  card.tabIndex=0;card.setAttribute('role','button');
+  card.setAttribute('aria-label',muscles[selected].ex[i][0]+'のコツを表示');
+  const show=()=>{
+   cards.forEach(c=>c.classList.remove('ex-selected'));card.classList.add('ex-selected');
+   const exercise=muscles[selected].ex[i];
+   const tips=technique[exercise[0]] || [muscles[selected].tip,'動作をゆっくりコントロールする。','最後の2〜3回でフォームが崩れる重量は避ける。'];
+   document.getElementById('exerciseDetail').innerHTML='<h3>✦ '+exercise[0]+' のフォームのコツ</h3>'+tips.map((t,n)=>'<p>'+(n+1)+'. '+t+'</p>').join('')+'<p class="note">目安：'+exercise[1]+'。痛みがある場合は中止して調整してください。</p>';
+  };
+  card.addEventListener('click',show);
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show()}});
+ });
+ const detail=document.createElement('div');detail.id='exerciseDetail';detail.className='coach-card';detail.innerHTML='<h3>種目をクリックするとフォームのコツが表示されます</h3><p>セット数だけでなく、動作のポイントと注意点を確認できます。</p>';
+ document.getElementById('exercises').after(detail);
+};
+renderMuscle();
+const gymTypes=[
+ {id:'full',label:'設備充実型',title:'ゴールドジム',desc:'本格的な筋力トレーニングやボディメイク向けの候補。フリーウェイト・マシンの種類は店舗によって異なります。',ex:'ベンチプレス、ラットプルダウン、レッグプレス、ケーブル種目',url:'https://www.goldsgym.jp/',other:'エニタイムフィットネス',otherUrl:'https://www.anytimefitness.co.jp/'},
+ {id:'budget',label:'低価格・手軽',title:'chocoZAP（チョコザップ）',desc:'運動習慣づくりや手軽さ重視の候補。店舗ごとに設備が異なり、フリーウェイトが必要なトレーニングには向かない場合があります。',ex:'設置マシンでの全身トレーニング',url:'https://chocozap.jp/',other:'FIT PLACE24',otherUrl:'https://fitplace.jp/'},
+ {id:'power',label:'高重量・本格派',title:'ゴールドジム / FIT PLACE24',desc:'ラックやダンベルなどの設備を重視する場合の候補。高重量を扱う設備の有無は利用予定店舗で必ず確認してください。',ex:'スクワット、デッドリフト、ダンベルプレス',url:'https://www.goldsgym.jp/',other:'FIT PLACE24',otherUrl:'https://fitplace.jp/'},
+ {id:'women',label:'初心者・安心重視',title:'エニタイムフィットネス',desc:'通いやすい立地や営業時間を重視する候補。スタッフ対応時間・初心者向け案内・清潔さは店舗で確認してください。',ex:'マシン全身法、ケーブル、軽い有酸素運動',url:'https://www.anytimefitness.co.jp/',other:'カーブス（女性向け）',otherUrl:'https://www.curves.co.jp/'}
+];
+function chooseGym(id){
+ document.querySelectorAll('#gymOptions button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+ const g=gymTypes.find(x=>x.id===id);
+ document.getElementById('gymResult').innerHTML='<h3>'+g.title+'</h3><p>'+g.desc+'</p><p><b>おすすめ種目：</b>'+g.ex+'</p><p><b>ほかの候補：</b>'+g.other+(g.otherUrl?' <a href="'+g.otherUrl+'" target="_blank" rel="noopener noreferrer" style="color:#79d9ff">公式サイト ↗</a>':'')+'</p><p><a href="'+g.url+'" target="_blank" rel="noopener noreferrer" style="color:#79d9ff">公式サイトで店舗・設備を確認 ↗</a></p><p class="note">料金・設備・利用条件は店舗ごとに異なります。順位付けではなく目的別の候補です。</p>';
+}
+document.getElementById('gymOptions').innerHTML=gymTypes.map(g=>'<button data-id="'+g.id+'">'+g.label+'</button>').join('');
+document.querySelectorAll('#gymOptions button').forEach(b=>b.onclick=()=>chooseGym(b.dataset.id));chooseGym('full');
+
+const restaurants=[
+ {name:'すき家',url:'https://www.sukiya.jp/',cut:'牛丼ミニなど小さめの主食を選び、サラダや卵を組み合わせる',maintain:'牛丼並盛にサラダ・卵などを追加',bulk:'牛丼の量を調整し、卵などを追加してエネルギーを確保',tip:'丼のサイズやトッピングで栄養量が変わる'},
+ {name:'松屋',url:'https://www.matsuyafoods.co.jp/matsuya/',cut:'定食のご飯量を調整し、肉と野菜を組み合わせる',maintain:'肉の定食と野菜を組み合わせる',bulk:'定食のご飯量を増やし、必要に応じて追加のおかずを選ぶ',tip:'定食のソースやドレッシングにも注意'},
+ {name:'サイゼリヤ',url:'https://www.saizeriya.co.jp/',cut:'チキン料理やサラダなどを組み合わせ、主食量を調整',maintain:'肉料理・サラダ・パスタなどをバランスよく選ぶ',bulk:'肉料理にパスタやパンなどの主食を追加',tip:'組み合わせ次第で脂質と総カロリーが大きく変わる'},
+ {name:'サブウェイ',url:'https://www.subway.co.jp/',cut:'野菜の多いサンドイッチを選び、ソース量を調整',maintain:'たんぱく源入りサンドイッチとサイドを組み合わせる',bulk:'サンドイッチのサイズやたんぱく源・サイドを追加',tip:'パン・具材・ソースで栄養成分が変わる'},
+ {name:'やよい軒',url:'https://www.yayoiken.com/',cut:'焼き魚や肉の定食を選び、ご飯量を調整',maintain:'主菜・ご飯・野菜を含む定食を選ぶ',bulk:'定食を基本にご飯や追加のおかずで調整',tip:'汁物や漬物などの塩分量にも気を配る'},
+ {name:'大戸屋',url:'https://www.ootoya.com/',cut:'魚や鶏肉中心の定食を選び、ご飯量を調整',maintain:'主菜・副菜のある定食を基本にする',bulk:'定食に主食やたんぱく源を追加する',tip:'揚げ物・調味料の量でエネルギー量が変わる'}
+];
+
+const restaurantMenus={
+ 'すき家':{cut:['まぐろたたき丼（並盛）','牛丼ライト（提供状況を確認）','サラダ＋たまご'],maintain:['牛丼（並盛）＋サラダ','まぐろたたき丼＋みそ汁','牛皿＋ごはん＋サラダ'],bulk:['牛丼（大盛）＋たまご','牛皿＋ごはん（大盛）','まぐろたたき丼＋追加のたんぱく源']},
+ '松屋':{cut:['牛焼肉定食（ごはん量を調整）','牛めし（小盛）＋生野菜','焼肉系定食＋サラダ'],maintain:['牛めし（並盛）＋生野菜','牛焼肉定食','定食＋みそ汁'],bulk:['牛焼肉定食＋ごはん大盛','牛めし（大盛）＋たまご','肉の定食＋追加のおかず']},
+ 'サイゼリヤ':{cut:['若鶏のディアボラ風＋サラダ','小エビのサラダ＋主菜','チキン系主菜＋ライス少量'],maintain:['若鶏のディアボラ風＋ライス','パスタ＋サラダ','ハンバーグ系主菜＋ライス'],bulk:['ミラノ風ドリア＋チキン系主菜','パスタ＋肉料理','主菜＋ライス＋追加の一皿']},
+ 'サブウェイ':{cut:['ローストチキン系サンド（販売状況を確認）','ターキー系サンド（販売状況を確認）','サンド＋野菜を多めに'],maintain:['えびアボカド＋サイド','BLT＋サラダ','チキン系サンド＋飲み物'],bulk:['サンドイッチを2つ組み合わせる','チキン系サンド＋サイド','サンド＋たんぱく源のトッピング']},
+ 'やよい軒':{cut:['しまほっけ定食','サバの塩焼定食','焼き魚定食＋ごはん量を調整'],maintain:['しまほっけ定食＋ごはん','サバの塩焼定食','肉系定食＋野菜'],bulk:['焼き魚定食＋ごはん追加','肉系定食＋追加のおかず','定食＋たまご・納豆など']},
+ '大戸屋':{cut:['しまほっけの炭火焼き定食','もろみチキンの炭火焼き定食','魚定食＋ごはん量を調整'],maintain:['もろみチキンの炭火焼き定食','しまほっけの炭火焼き定食','鶏料理＋ごはん'],bulk:['鶏肉定食＋ごはん追加','魚定食＋追加の小鉢','肉料理＋主食を増やす']}
+};
+let foodGoal='cut';
+const goalNames={cut:'減量',maintain:'維持',bulk:'増量'};
+function renderRestaurants(){
+ document.getElementById('foodGoals').innerHTML=Object.entries(goalNames).map(([key,label])=>'<button data-goal="'+key+'" class="'+(key===foodGoal?'active':'')+'">'+label+'</button>').join('');
+ document.querySelectorAll('#foodGoals button').forEach(b=>b.onclick=()=>{foodGoal=b.dataset.goal;renderRestaurants()});
+ document.getElementById('restaurantResults').innerHTML=restaurants.map(r=>'<article class="chain-card"><span class="pill">'+goalNames[foodGoal]+'向けの注文例</span><h3>'+r.name+'</h3><p>'+r[foodGoal]+'</p><p class="small">ポイント：'+r.tip+'</p><a href="'+r.url+'" target="_blank" rel="noopener noreferrer">公式サイト・メニューを確認 ↗</a></article>').join('');
+}
+renderRestaurants();
+
+const gearCatalog=[
+ ['Versa Gripps','grip',8800,16900,'アメリカ','グリップ補助','パワーグリップの代表格。着脱が速く、ラットプルやローイングの握力補助に。CLASSIC/PRO/XTREMEなどで素材とフィット感が異なる。','https://www.versagripps.jp/'],
+ ['GOLD’S GYM','grip',2500,9000,'日本展開','定番・幅広い','パワーグリップ、リストストラップ、ベルトなどを選べる。初めてのギア選びにも比較しやすい。','https://www.goldsgym.jp/'],
+ ['Harbinger','grip',2000,8500,'アメリカ','入門〜中級','グローブ、リフティングストラップ、グリップが豊富。手の保護や握力補助を重視。','https://harbingerfitness.com/'],
+ ['Schiek','grip',3500,11000,'アメリカ','グリップ・フィット感','リフティングストラップやグローブ、ベルトを展開。握り心地と手首のフィットを比較したい人向け。','https://schiek.com/'],
+ ['SBD Apparel','belt',18000,55000,'イギリス','競技・高重量','パワーリフティング用ベルトが代表的。厚み・バックル方式・競技ルールを確認。','https://www.sbdapparel.jp/'],
+ ['Rogue Fitness','belt',10000,45000,'アメリカ','ストレングス','トレーニングベルトやストラップなどを展開。製品ごとに仕様とサイズを比較。','https://www.roguefitness.com/'],
+ ['GOLD’S GYM','belt',4000,16000,'日本展開','初心者〜本格派','ナイロン・レザー系などのベルト候補。スクワットなどで腹圧を意識する補助に。','https://www.goldsgym.jp/'],
+ ['Harbinger','belt',3500,10000,'アメリカ','使いやすさ','比較的扱いやすいベルトを検討したい人向け。柔らかさや締め付けの調整を確認。','https://harbingerfitness.com/'],
+ ['SBD Apparel','wrap',4000,12000,'イギリス','リストラップ','ベンチプレスなどで手首の安定を補助。硬さ・長さ・巻き方を選ぶ。','https://www.sbdapparel.jp/'],
+ ['Versa Gripps','wrap',4500,8000,'アメリカ','手首サポート','リストラップも展開。プレス系で手首の角度を保ちたい場合の候補。','https://www.versagripps.jp/'],
+ ['SBD Apparel','sleeve',9000,23000,'イギリス','ニースリーブ','スクワットでの膝周りのフィット感を重視。サイズと競技規定を確認。','https://www.sbdapparel.jp/'],
+ ['Rehband','sleeve',4000,15000,'スウェーデン','膝サポート','ニースリーブなどのサポート用品。厚み・サイズ・着脱しやすさを比較。','https://www.rehband.com/'],
+ ['ROCKTAPE','accessory',1500,6000,'アメリカ','コンディショニング','テープやサポート用品。症状の治療ではなく用途・使用方法を確認して選ぶ。','https://www.rocktape.com/'],
+ ['GOLD’S GYM','accessory',1500,7000,'日本展開','小物','トレーニンググローブ、ストラップなどの小物を探す入口。','https://www.goldsgym.jp/']
+];
+const wearCatalog=[
+ ['Gymshark','イギリス','performance,women,bodybuilding',3000,13000,'フィット感・速乾・シームレス。メンズの筋トレウェアからレディースのレギンスまで幅広い。','https://www.gymshark.com/'],
+ ['YoungLA','アメリカ','bodybuilding,street,women',3500,15000,'オーバーサイズT、パンプカバー、ストリート系。ジムと普段着の両方で着やすい。','https://www.youngla.com/'],
+ ['Ryderwear','オーストラリア','bodybuilding,performance,women',3500,14000,'ボディビル志向のシルエットと機能性。タンクトップやレギンス、トレーニングシューズも。','https://www.ryderwear.com/'],
+ ['Vanquish Fitness','イギリス','bodybuilding,street,women',3500,15000,'オーバーサイズ、マッスルフィット、セットアップが特徴。','https://www.vqfit.com/'],
+ ['Darc Sport','アメリカ','bodybuilding,street',5000,18000,'ダークなグラフィックとハードコアなボディビル系デザイン。限定販売や在庫に注意。','https://shop.darcsport.com/'],
+ ['Alphalete','アメリカ','performance,women,bodybuilding',4000,16000,'身体のラインを意識したトレーニングウェア。レギンスやフィット系トップス。','https://alphaleteathletics.com/'],
+ ['NVGTN','アメリカ','women,performance',4000,14000,'レディースのシームレスレギンス、スポーツブラなどが中心。','https://nvgtn.com/'],
+ ['Oner Active','イギリス','women,performance',4500,15000,'レディースの筋トレ向けレギンスやスポーツブラ。フィットと動きやすさを重視。','https://oneractive.com/'],
+ ['AYBL','イギリス','women,performance',3000,12000,'レギンスやセットアップなど、シンプルなトレーニングスタイル。','https://www.beaybl.com/'],
+ ['DFYNE','イギリス','women,performance',4000,14000,'レディースのフィット感を重視したアクティブウェア。','https://dfyne.com/'],
+ ['Lululemon','カナダ','performance,women,street',6000,22000,'着心地や素材感を重視した高機能ウェア。ヨガから筋トレ、普段着まで。','https://www.lululemon.co.jp/'],
+ ['Nike','アメリカ','performance,street,women',2500,14000,'Dri-FITなどの機能性素材。シューズ・ウェアをまとめて選びやすい。','https://www.nike.com/jp/'],
+ ['adidas','ドイツ','performance,street,women',2500,14000,'トレーニング用トップス・ショーツ・タイツなど幅広い。','https://www.adidas.jp/'],
+ ['Under Armour','アメリカ','performance,bodybuilding,women',2500,14000,'コンプレッションと速乾ウェア。身体に沿うフィットを探す人に。','https://www.underarmour.co.jp/'],
+ ['New Balance','アメリカ','performance,street,women',3000,14000,'ランニング・トレーニング兼用のウェアやシューズが豊富。','https://shop.newbalance.jp/'],
+ ['SBD Apparel','イギリス','bodybuilding,performance',5000,17000,'ストレングススポーツ向け。Tシャツ、シングレット、ショーツなど。','https://www.sbdapparel.jp/'],
+ ['GOLD’S GYM','アメリカ発','bodybuilding,street',2500,11000,'クラシックなボディビル系ロゴT、タンク、トレーニングウェア。','https://www.goldsgym.jp/'],
+ ['CRONOS','日本','bodybuilding,street',5000,19000,'日本発の筋トレ・ストリート系。モノトーンのスポーティなデザイン。','https://cronos-fit.com/'],
+ ['LYFT','日本','bodybuilding,street',4500,16000,'日本のフィットネスウェア。筋肉のシルエットを意識したTシャツやタンク。','https://lyft-fit.com/'],
+ ['VEATM','日本','bodybuilding,performance',4000,14000,'トレーニング向けのTシャツ、ショーツ、タンクなど。','https://veatm.com/'],
+ ['UNIQLO','日本','performance,street,women',1000,6000,'エアリズム系など日常と運動を兼ねた低予算の選択肢。','https://www.uniqlo.com/jp/ja/']
+];
+function catalogCard(title,meta,desc,url,extra){return '<article class="catalog-card"><div class="meta">'+meta+'</div><h3>'+title+'</h3><p>'+desc+'</p><p class="tags">'+extra+'</p><a href="'+url+'" target="_blank" rel="noopener noreferrer">公式サイトで確認 ↗</a></article>'}
+function renderGear(){const c=document.getElementById('gearCategory').value,b=document.getElementById('gearBudget').value;const list=gearCatalog.filter(g=>(c==='all'||g[1]===c)&&(b==='all'||g[2]<=Number(b)));document.getElementById('gearResults').innerHTML=list.length?list.map(g=>catalogCard(g[0],g[3]+' / '+g[4],g[6],g[7],g[5]+' · 参考予算 '+g[2].toLocaleString()+'〜'+g[3].toLocaleString()+'円')).join(''):'<p>条件に合う候補がありません。予算を広げてみてください。</p>'}
+function renderWear(){const st=document.getElementById('wearStyle').value,b=document.getElementById('wearBudget').value,q=document.getElementById('wearSearch').value.trim().toLowerCase();const list=wearCatalog.filter(w=>(st==='all'||w[2].split(',').includes(st))&&(b==='all'||w[3]<=Number(b))&&w[0].toLowerCase().includes(q));document.getElementById('wearResults').innerHTML=list.length?list.map(w=>catalogCard(w[0],w[1]+' / 参考予算 '+w[3].toLocaleString()+'〜'+w[4].toLocaleString()+'円',w[5],w[6],'スタイル：'+w[2].replaceAll(',',' / '))).join(''):'<p>条件に合うブランドがありません。</p>'}
+['gearCategory','gearBudget'].forEach(id=>document.getElementById(id).addEventListener('change',renderGear));
+['wearStyle','wearBudget'].forEach(id=>document.getElementById(id).addEventListener('change',renderWear));
+document.getElementById('wearSearch').addEventListener('input',renderWear);
+renderGear();renderWear();
+
+const liftRatios={bench:[.45,.8,1.2],squat:[.65,1.15,1.65],deadlift:[.75,1.35,1.85]};
+function calcLift(){
+ const w=Number(document.getElementById('liftWeight').value);
+ if(!Number.isFinite(w)||w<30||w>250){document.getElementById('liftResult').textContent='体重は30〜250kgで入力してください。';return;}
+ const t=document.getElementById('liftType').value,e=document.getElementById('liftExperience').value;
+ const idx={beginner:0,intermediate:1,advanced:2}[e];
+ const ratio=liftRatios[t][idx],estimate=Math.round(w*ratio/2.5)*2.5;
+ document.getElementById('liftResult').innerHTML='<div class="kpis"><div class="kpi"><b>'+w+'kg</b><span>体重</span></div><div class="kpi"><b>× '+ratio+'</b><span>例示倍率</span></div><div class="kpi"><b>'+estimate+'kg</b><span>1回挙上の参考値</span></div></div><p>これは性別・年齢・技術差を考慮しない簡易例です。初心者はまず軽い重量でフォームを練習してください。</p>';
+}
+document.getElementById('liftCalc').onclick=calcLift;calcLift();
+const menuItems={
+ cut:[['朝','ご飯150g、卵2個、ヨーグルト、果物','約500kcal'],['昼','ご飯180g、鶏むね肉150g、野菜、味噌汁','約650kcal'],['夜','ご飯150g、焼き魚、豆腐、温野菜','約600kcal'],['間食','バナナ、牛乳などで調整','目標に合わせて調整']],
+ maintain:[['朝','オートミール、牛乳、卵、果物','約600kcal'],['昼','ご飯200g、鶏肉、野菜、味噌汁','約750kcal'],['夜','ご飯200g、魚、豆腐、サラダ','約700kcal'],['間食','ヨーグルト、ナッツ、果物','目標に合わせて調整']],
+ bulk:[['朝','ご飯200g、卵、納豆、牛乳、果物','約750kcal'],['昼','ご飯250g、鶏肉、野菜、オリーブオイル','約850kcal'],['夜','ご飯250g、魚、豆腐、野菜','約800kcal'],['間食','オートミール、ヨーグルト、バナナ','目標に合わせて調整']]
+};
+function calcNutrition(){
+ const age=Number(document.getElementById('age').value),height=Number(document.getElementById('height').value),weight=Number(document.getElementById('weight').value),sex=document.getElementById('sex').value,activity=Number(document.getElementById('activity').value),goal=document.getElementById('goal').value;
+ const out=document.getElementById('nutritionResult');
+ if(!Number.isFinite(age)||age<18||age>90||height<120||height>230||weight<30||weight>250){out.textContent='年齢18〜90歳、身長120〜230cm、体重30〜250kgで入力してください。';return;}
+ const bmr=10*weight+6.25*height-5*age+(sex==='male'?5:-161);
+ const tdee=bmr*activity;
+ const target=tdee+(goal==='cut'?-300:goal==='bulk'?250:0);
+ const protein=weight*1.6,fat=weight*.8,carbs=Math.max(0,(target-protein*4-fat*9)/4);
+ const menu=menuItems[goal];
+ out.innerHTML='<div class="kpis"><div class="kpi"><b>'+Math.round(bmr)+'</b><span>推定基礎代謝 kcal/日</span></div><div class="kpi"><b>'+Math.round(tdee)+'</b><span>推定維持 kcal/日</span></div><div class="kpi"><b>'+Math.round(target)+'</b><span>目標 kcal/日</span></div></div><h3>栄養素の初期目安</h3><p>たんぱく質 約'+Math.round(protein)+'g ／ 脂質 約'+Math.round(fat)+'g ／ 炭水化物 約'+Math.round(carbs)+'g / 日</p><h3>1日の食事例</h3>'+menu.map(m=>'<div class="meal"><b>'+m[0]+'</b><p>'+m[1]+'<br><span class="note">'+m[2]+'</span></p></div>').join('')+'<p class="note">献立は組み合わせ例で、表示された目標カロリーに自動一致する分量ではありません。食材の重量・調理法・栄養表示で調整してください。体重推移と体調を2〜4週間見て見直しましょう。</p>';
+}
+document.getElementById('nutritionCalc').onclick=calcNutrition;calcNutrition();
+const wellness={
+ swelling:{label:'むくみが気になる',title:'むくみ対策の食生活',body:'塩分の多い加工食品や汁物を摂りすぎていないか確認。バナナ、じゃがいも、ほうれん草、豆類などのカリウムを含む食品をバランスよく。水分を極端に制限しない。',caution:'腎機能の問題やカリウム制限がある場合は自己判断で増やさない。むくみの原因は食事以外にもあります。'},
+ fatigue:{label:'疲労・回復',title:'トレーニング後の回復',body:'ご飯や芋などの炭水化物、肉・魚・卵・豆類のたんぱく質、野菜・果物を組み合わせる。睡眠と休息も重要。',caution:'疲労が長引く場合はトレーニング量を見直す。'},
+ constipation:{label:'便通を整えたい',title:'便通と食事',body:'オートミール、キウイ、野菜、豆類などから食物繊維を徐々に増やす。水分と日常的な活動も意識する。',caution:'腹痛や強い膨満があるときに繊維を急増させない。長引く場合は受診を。'},
+ iron:{label:'鉄分が気になる',title:'鉄分を含む食品',body:'赤身肉、あさり、大豆製品、青菜などを組み合わせる。植物性食品はビタミンCを含む果物・野菜と一緒に。',caution:'貧血が疑われる場合は血液検査で確認し、鉄剤を自己判断で大量摂取しない。'}
+};
+function showWellness(k){const x=wellness[k];document.querySelectorAll('#wellnessOptions button').forEach(b=>b.classList.toggle('active',b.dataset.k===k));document.getElementById('wellnessResult').innerHTML='<h3>'+x.title+'</h3><p>'+x.body+'</p><p class="note">注意：'+x.caution+'</p>';}
+document.getElementById('wellnessOptions').innerHTML=Object.entries(wellness).map(([k,v])=>'<button data-k="'+k+'">'+v.label+'</button>').join('');
+document.querySelectorAll('#wellnessOptions button').forEach(b=>b.onclick=()=>showWellness(b.dataset.k));showWellness('swelling');
+
+// V4: Convenience recommendations. Only products with verified official pages are marked as named products.
+const cvProducts=[
+ {store:'seven',name:'７プレミアム サラダチキン プレーン',goals:['protein','cut','fatigue'],why:'高たんぱくの主菜。おにぎりや野菜と合わせて一食に。',kind:'公式掲載商品',url:'https://www.sej.co.jp/products/a/itemresult/?key=%E3%82%B5%E3%83%A9%E3%83%80%E3%83%81%E3%82%AD%E3%83%B3&limit=100&p=1'},
+ {store:'seven',name:'７プレミアム 味付き半熟ゆでたまご',goals:['protein','fatigue','cut'],why:'たんぱく質を追加しやすい。味付きなので塩分表示も確認。',kind:'公式掲載商品',url:'https://www.sej.co.jp/products/a/7premium/daily_dish/'},
+ {store:'seven',name:'バナナ（青果コーナー）',goals:['swelling','fatigue','constipation'],why:'カリウムと炭水化物を補いやすい。販売は店舗による。',kind:'食品カテゴリ例',url:'https://www.sej.co.jp/products/'},
+ {store:'seven',name:'キウイ・カットフルーツ',goals:['constipation','fatigue'],why:'果物と水分を取り入れる選択肢。キウイの在庫は店舗による。',kind:'食品カテゴリ例',url:'https://www.sej.co.jp/products/'},
+ {store:'seven',name:'納豆・豆腐',goals:['iron','protein','cut','constipation'],why:'植物性たんぱく質を追加。納豆は食物繊維も含む。',kind:'食品カテゴリ例',url:'https://www.sej.co.jp/products/'},
+ {store:'seven',name:'ほうれん草のおひたし・青菜惣菜',goals:['iron','swelling','constipation'],why:'野菜を追加できる。味付けの塩分は確認。',kind:'食品カテゴリ例',url:'https://www.sej.co.jp/products/'},
+ {store:'lawson',name:'たんぱく質30.3g サラダチキン プレーン',goals:['protein','cut','fatigue'],why:'公式表示は1包装110gあたり141kcal、たんぱく質30.3g。',kind:'公式掲載商品',url:'https://www.lawson.co.jp/recommend/original/detail/1507463_1996.html'},
+ {store:'lawson',name:'バナナ（青果コーナー）',goals:['swelling','fatigue','constipation'],why:'カリウム・炭水化物の補給に。販売は店舗による。',kind:'食品カテゴリ例',url:'https://www.lawson.co.jp/recommend/'},
+ {store:'lawson',name:'無糖ヨーグルト',goals:['constipation','protein'],why:'乳製品が合う人の選択肢。乳糖でお腹が張る場合は避ける。',kind:'食品カテゴリ例',url:'https://www.lawson.co.jp/recommend/'},
+ {store:'lawson',name:'枝豆・豆類の惣菜',goals:['iron','protein','constipation'],why:'植物性たんぱく質・食物繊維の補助。味付けの塩分を確認。',kind:'食品カテゴリ例',url:'https://www.lawson.co.jp/recommend/'},
+ {store:'lawson',name:'おにぎり（鮭など）',goals:['fatigue','protein'],why:'運動後の炭水化物を確保。たんぱく源と組み合わせる。',kind:'食品カテゴリ例',url:'https://www.lawson.co.jp/recommend/'},
+ {store:'family',name:'ごまだれサラダチキン',goals:['protein','fatigue'],why:'公式掲載でたんぱく質約12.5g。ごまだれの脂質・塩分も確認。',kind:'公式掲載商品',url:'https://www.family.co.jp/goods/sidedishes/1132717.html'},
+ {store:'family',name:'国産鶏のサラダチキン（各種）',goals:['protein','cut','fatigue'],why:'味付けによって栄養成分が異なる。パッケージ表示を比較。',kind:'商品シリーズ例',url:'https://www.family.co.jp/goods.html'},
+ {store:'family',name:'バナナ（青果コーナー）',goals:['swelling','fatigue','constipation'],why:'手軽な果物。販売の有無は店舗による。',kind:'食品カテゴリ例',url:'https://www.family.co.jp/goods.html'},
+ {store:'family',name:'ゆでたまご',goals:['protein','cut','fatigue'],why:'たんぱく質を追加できる。味付けの塩分に注意。',kind:'食品カテゴリ例',url:'https://www.family.co.jp/goods.html'},
+ {store:'family',name:'海藻サラダ・カット野菜',goals:['constipation','cut','swelling'],why:'食物繊維を補う一案。ドレッシングの塩分に注意。',kind:'食品カテゴリ例',url:'https://www.family.co.jp/goods.html'},
+ {store:'family',name:'豆腐・納豆',goals:['iron','protein','constipation'],why:'植物性たんぱく質や食物繊維を摂る選択肢。',kind:'食品カテゴリ例',url:'https://www.family.co.jp/goods.html'}
+];
+const cvStoreNames={seven:'セブン‐イレブン',lawson:'ローソン',family:'ファミリーマート'};
+const cvTips={all:'気になる症状が長引く場合は食品での自己対処だけに頼らないでください。',swelling:'むくみには塩分過多や長時間同じ姿勢など複数の原因があります。カリウム食品は腎機能に問題がある場合は医療者に相談。急な腫れ、片脚の腫れ、息切れは受診を。',constipation:'食物繊維は急に増やすとガス・腹部膨満が悪化することがあります。少量から試し、水分も確保。強い腹痛や長引く便秘は受診を。',fatigue:'炭水化物・たんぱく質・睡眠・休養を組み合わせることが大切。疲労が続く場合は原因の確認を。',iron:'食品だけで貧血を診断・治療することはできません。月経過多、動悸、息切れ、強い疲労などがある場合は血液検査を相談。',protein:'高たんぱく食品だけでなく主食・野菜・脂質も含めて食事全体を整えましょう。',cut:'極端な食事制限は避け、必要なエネルギーとたんぱく質を確保しましょう。'};
+function renderConvenience(){
+ const store=document.getElementById('cvStore').value,goal=document.getElementById('cvGoal').value;
+ const data=cvProducts.filter(p=>(store==='all'||p.store===store)&&(goal==='all'||p.goals.includes(goal)));
+ document.getElementById('cvResults').innerHTML=data.map(p=>'<article class="v4-card"><span class="v4-tag">'+cvStoreNames[p.store]+'</span><span class="v4-tag">'+p.kind+'</span><h3>'+p.name+'</h3><p>'+p.why+'</p><a href="'+p.url+'" target="_blank" rel="noopener noreferrer">公式の商品情報・商品一覧を見る ↗</a></article>').join('')||'<p>この条件の候補はまだ登録されていません。</p>';
+ document.getElementById('cvAdvice').textContent=cvTips[goal];
+}
+['cvStore','cvGoal'].forEach(id=>document.getElementById(id).addEventListener('change',renderConvenience));renderConvenience();
+const proteinTypes=[
+ {name:'WPC（ホエイ濃縮）',features:'乳清を濃縮。比較的安価で定番。製品により乳糖や脂質が残る。',allergy:'乳由来・乳糖が残る',range:'約2,500〜6,000円',who:'乳製品で不調がなく、コスパ重視'},
+ {name:'WPI（ホエイ分離）',features:'乳清からたんぱく質をより高純度に分離。一般に乳糖は少ないがゼロとは限らない。',allergy:'乳由来・乳糖は少なめ',range:'約4,000〜9,000円',who:'乳糖が気になるが乳アレルギーではない人'},
+ {name:'WPH（加水分解ホエイ）',features:'たんぱく質を部分的に分解したタイプ。高価になりやすい。胃腸に必ず優しいわけではない。',allergy:'乳由来・製品ごとに確認',range:'約6,000〜12,000円以上',who:'製品特性を理解して選びたい人'},
+ {name:'カゼイン',features:'牛乳由来。比較的ゆっくり消化される。満腹感を重視する人の選択肢。',allergy:'乳由来・乳糖は製品差',range:'約3,000〜8,000円',who:'腹持ちを重視する人'},
+ {name:'ソイ（大豆）',features:'大豆由来の植物性たんぱく質。乳由来成分を避けたい場合の候補。',allergy:'大豆アレルギーに注意',range:'約2,000〜5,500円',who:'乳製品を避けたい人、植物性志向'},
+ {name:'ピー（えんどう豆）',features:'えんどう豆由来。乳・大豆を避けたい場合の候補。食感や味は製品差。',allergy:'豆類アレルギー等に注意',range:'約3,000〜8,000円',who:'乳製品を避けたい人、植物性志向'}
+];
+document.getElementById('proTypes').innerHTML=proteinTypes.map(p=>'<tr><td><b>'+p.name+'</b></td><td>'+p.features+'</td><td>'+p.allergy+'</td><td>'+p.range+'</td><td>'+p.who+'</td></tr>').join('');
+const checks=[['たんぱく質含有量','1食あたりのたんぱく質量と、100gあたりの含有率を確認。粉末重量とたんぱく質重量は違います。'],['実質コスト','価格÷総たんぱく質量で比較。安い1kgでも含有率が低いと割高な場合があります。'],['乳糖・原材料','乳糖不耐症が疑われる場合はWPIや乳不使用製品を検討。甘味料・イヌリン・糖アルコールで張る人もいます。'],['飲む量とタイミング','一度に大量摂取せず、少量から。食事で足りない分を補う位置づけで、飲む時間は絶対ではありません。'],['品質と表示','アレルゲン、第三者認証、販売元、賞味期限を確認。競技者はドーピング対策の認証も確認。'],['味・継続性','溶けやすさ・味・胃腸との相性を優先。初回は少量パックで試すのも有効。']];
+document.getElementById('proChecklist').innerHTML=checks.map(x=>'<article class="v4-card"><h3>'+x[0]+'</h3><p>'+x[1]+'</p></article>').join('');
+function diagnoseProtein(){
+ const budget=Number(document.getElementById('proBudget').value),stomach=document.getElementById('proStomach').value,priority=document.getElementById('proPriority').value;
+ let name='WPC（ホエイ濃縮）',why='乳製品で不調がない場合、コストパフォーマンスのよい定番候補です。';
+ if(stomach==='allergy'){name='ソイまたはピープロテイン（乳不使用表示を確認）';why='牛乳アレルギーではWPI・WPHも乳由来なので避け、乳成分・交差接触表示を確認してください。';}
+ else if(priority==='plant'){name='ソイまたはピープロテイン';why='植物性で乳由来原料を避けたい人の候補。豆類アレルギーは確認してください。';}
+ else if(stomach==='lactose'){name='WPI または乳不使用のソイ・ピー';why='WPIは一般にWPCより乳糖が少なめ。ただし必ず症状が出ないとは限りません。';}
+ else if(stomach==='sensitive'){name='無香料WPI または原材料の少ないソイ・ピー';why='乳糖だけでなく、糖アルコール、イヌリン、甘味料、一度に飲む量も影響することがあります。少量から確認を。';}
+ else if(priority==='slow'){name='カゼイン または ソイ';why='腹持ちを重視する場合の候補。ただし個人差があります。';}
+ else if(priority==='digest'){name='WPI';why='乳糖を減らしたい人向けの候補ですが、乳アレルギーには使えません。';}
+ let budgetText=budget?'選択予算は1kgあたり'+budget.toLocaleString('ja-JP')+'円以下。参考価格帯と合わない場合は小容量やセールも比較してください。':'予算指定なし。';
+ if(budget&&budget<=3000&&(/WPI|WPH/.test(name)))budgetText+=' この予算でWPIを選べるとは限らず、予算を上げるかソイ等を検討してください。';
+ document.getElementById('proResult').innerHTML='<h3>おすすめ候補：'+name+'</h3><p>'+why+'</p><p>'+budgetText+'</p><p class="note">この診断は一般的な比較ガイドで、症状の原因や適合性を診断するものではありません。腹痛・便秘・下痢が続く場合は医療機関に相談してください。</p>';
+}
+document.getElementById('proDiagnose').addEventListener('click',diagnoseProtein);diagnoseProtein();
+</script><style>
+.v5-wrap{max-width:1500px;margin:10px auto 65px;padding:0 5vw}.v5-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:13px}.v5-card{border:1px solid #344b66;background:#111e2e;border-radius:13px;padding:17px}.v5-card h3{margin:4px 0 8px;color:#f3c75b;font-size:17px}.v5-card p{font-size:12px;line-height:1.85;color:#bfd0e0}.v5-card small{color:#89d7ef}.v5-card a{color:#8bdcff}.v5-panel{border:1px solid #344b66;background:#101a29;border-radius:18px;padding:24px;margin:18px 0}.v5-panel h2{font-size:23px}.v5-filter{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.v5-filter label{display:flex;flex-direction:column;gap:6px;color:#b5c6d8;font-size:12px}.v5-filter select{background:#091424;color:#fff;border:1px solid #405a75;border-radius:9px;padding:11px;min-width:155px}.v5-pill{display:inline-block;border:1px solid #496581;border-radius:30px;padding:4px 9px;margin:3px 4px 4px 0;color:#a8d8ed;font-size:10px}.v5-muted{color:#9db1c4;font-size:12px;line-height:1.8}
+</style>
+<div class="v5-wrap" id="brandSupplementGuide">
+<section class="v5-panel"><div class="eyebrow">09 / PROTEIN BRAND DIRECTORY</div><h2>具体的なプロテインメーカーを比較</h2><p class="v5-muted">価格帯は販売価格の断定ではなく「相対的な予算イメージ」です。セール・容量・味・輸入費用で変動します。各ブランドの中にもWPC・WPI・ソイなど複数の製品があります。</p>
+<div class="v5-filter"><label>プロテインの種類<select id="v5ProteinType"><option value="all">すべて</option><option value="WPC">WPC</option><option value="WPI">WPI</option><option value="SOY">ソイ・植物性</option></select></label><label>予算感<select id="v5ProteinBudget"><option value="all">すべて</option><option value="1">低価格重視</option><option value="2">中価格まで</option><option value="3">プレミアムも含む</option></select></label><label>重視すること<select id="v5ProteinNeed"><option value="all">指定なし</option><option value="stomach">乳糖・お腹への配慮</option><option value="flavor">味の選択肢</option><option value="cost">コスト重視</option></select></label></div>
+<div class="v5-grid" id="v5ProteinCards"></div><p class="v5-muted">牛乳アレルギーの場合、WPIも乳由来なので選べません。乳糖不耐症ではWPIが合う人もいますが、腹部症状が必ず改善するわけではありません。甘味料・摂取量・他の食事も確認しましょう。</p></section>
+<section class="v5-panel"><div class="eyebrow">10 / SUPPLEMENT EVIDENCE GUIDE</div><h2>サプリメントの効果・選び方・注意点</h2><p class="v5-muted">効果の根拠が比較的強いものと、限定的なものを分けて表示。食事・睡眠・運動の代わりにはなりません。特に腎疾患、服薬、妊娠中、持続するむくみや腹部症状がある場合は医療者に相談してください。</p>
+<div class="v5-filter"><label>目的<select id="v5SuppGoal"><option value="all">すべて</option><option value="strength">筋力・パフォーマンス</option><option value="recovery">回復・栄養補助</option><option value="health">健康・不足対策</option><option value="cut">減量関連</option></select></label><label>根拠の程度<select id="v5Evidence"><option value="all">すべて</option><option value="strong">比較的強い</option><option value="mixed">条件付き・限定的</option></select></label></div>
+<div class="v5-grid" id="v5SuppCards"></div><p class="v5-muted">参考：<a href="https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/" target="_blank" rel="noopener noreferrer">米国NIH ODS：運動とサプリメント</a> ／ <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5469049/" target="_blank" rel="noopener noreferrer">ISSN：クレアチンのポジションスタンド</a>。科学的知見は更新されます。</p></section>
+</div>
+<script>
+(function(){
+const brands=[
+['SAVAS（ザバス）','日本','WPC,WPI,SOY',2,'flavor','明治の定番ブランド。ホエイ100、WPI、ソイなどラインが広い。','入手しやすさ・国内サポート重視','https://www.meiji.co.jp/sports/savas/'],
+['Myprotein（マイプロテイン）','英国','WPC,WPI,SOY',1,'cost','Impact Wheyなどが代表例。セールやまとめ買いの条件で価格差が大きい。','セール活用・フレーバー比較','https://www.myprotein.jp/'],
+['VALX（バルクス）','日本','WPC,WPI,SOY',2,'flavor','ホエイやWPIなど複数ライン。味と飲みやすさを比較しやすい。','国内ブランド・味重視','https://shop.valx.jp/'],
+['be LEGEND（ビーレジェンド）','日本','WPC,WPI,SOY',2,'flavor','個性的なフレーバー展開。WPC・WPIなど商品ごとに原材料が異なる。','味のバリエーション重視','https://belegend.jp/'],
+['DNS','日本','WPC,WPI',3,'flavor','スポーツ栄養向けのホエイ製品が中心。成分表示と1食のタンパク質量を比較。','スポーツ向けの定番を選びたい','https://shop.dnszone.jp/'],
+['GronG（グロング）','日本','WPC,WPI,SOY',1,'cost','比較的予算を抑えたい場合の候補。WPIやソイも商品別に確認。','コストと種類の両立','https://shop.grong.jp/'],
+['X-PLOSION（エクスプロージョン）','日本','WPC,WPI',1,'cost','大容量タイプを検討しやすい。保管期間と1kg当たり単価を確認。','大量消費・コスト重視','https://store.x-plosion.jp/'],
+['ULTORA（ウルトラ）','日本','WPC,WPI,SOY',3,'flavor','味や配合原料を比較して選ぶブランド。甘味料や乳糖の有無は商品ごとに確認。','風味・原材料の比較','https://ultora.co.jp/'],
+['REYS（レイズ）','日本','WPC,WPI',2,'flavor','ホエイ中心のブランド。フレーバーと容量で比較。','飲みやすさ重視','https://reys.jp/'],
+['ALPRON（アルプロン）','日本','WPC,WPI,SOY',2,'cost','ホエイとソイなどの選択肢。目的に応じて製品ラインを選択。','種類の幅を重視','https://shop.alpron.co.jp/'],
+['Optimum Nutrition','米国','WPC,WPI',3,'flavor','Gold Standard 100% Wheyが代表的。複数のホエイ原料を組み合わせた製品。','海外定番ブランド','https://www.optimumnutrition.com/'],
+['Dymatize','米国','WPI',3,'stomach','ISO100など加水分解ホエイアイソレート系の製品がある。乳由来である点に注意。','低乳糖タイプを比較','https://dymatize.com/'],
+['NOW Sports','米国','WPC,WPI,SOY',3,'stomach','比較的シンプルな原料の粉末製品を探す際の候補。商品ごとに成分確認。','シンプルな配合を探す','https://www.nowfoods.com/'],
+['Kentai（健康体力研究所）','日本','WPC,SOY',2,'cost','スポーツ向けプロテインを展開する国内ブランド。','国内メーカーを比較','https://kentai.co.jp/']
+];
+const supps=[
+{name:'クレアチン（モノハイドレート）',goals:['strength'],e:'strong',effect:'短時間・高強度運動でのパフォーマンスや、筋トレと組み合わせた除脂肪量の増加に比較的強い根拠。',use:'一般的な研究用量は1日3〜5g。ローディングは必須ではない。',risk:'体内水分の増加による体重変化や胃腸症状があり得る。腎疾患がある場合は医師へ。',value:'優先度：高（筋力目的）'},
+{name:'カフェイン',goals:['strength','cut'],e:'strong',effect:'集中力や持久系・高強度運動のパフォーマンスを改善する場合がある。脂肪を直接大きく減らすものではない。',use:'感受性が異なるため少量から。コーヒーやエナジードリンクも合計量に含む。',risk:'不眠・動悸・不安・胃腸症状。夕方以降や心疾患、不整脈などでは注意。',value:'優先度：条件付き'},
+{name:'プロテインパウダー',goals:['recovery','strength'],e:'strong',effect:'食事で不足するタンパク質を補いやすい。筋肥大は総タンパク質量と筋トレが重要。',use:'1回20〜40g程度のタンパク質を食事状況に応じて補う例がある。',risk:'乳糖・乳アレルギー・甘味料・過量摂取による腹部症状に注意。',value:'優先度：食事で不足する場合'},
+{name:'ベータアラニン',goals:['strength'],e:'mixed',effect:'約1〜4分続く高強度運動などで一部のパフォーマンス改善が示される。最大筋力への効果は限定的。',use:'研究では数週間継続する方法が多く、単発のプレワークアウトとは異なる。',risk:'皮膚のピリピリ感が起こることがある。',value:'優先度：競技内容次第'},
+{name:'シトルリン／シトルリンマレート',goals:['strength'],e:'mixed',effect:'パンプ感や反復回数への効果が研究されているが結果は一貫しない。',use:'製品によりシトルリン量が異なり、配合量の表示を確認。',risk:'胃腸症状、血圧に影響する薬との併用に注意。',value:'優先度：低〜中'},
+{name:'EAA（必須アミノ酸）',goals:['recovery'],e:'mixed',effect:'必須アミノ酸を補給できるが、十分な良質タンパク質を摂っていれば追加の利点は不明確。',use:'食事・ホエイプロテインの不足を先に確認。',risk:'高価になりやすく、製品によって甘味料で胃腸症状。',value:'優先度：食事次第'},
+{name:'BCAA',goals:['recovery'],e:'mixed',effect:'タンパク質が十分な人では筋肥大・回復への追加効果が一貫して示されていない。',use:'優先順位は総タンパク質量・食事を上に置く。',risk:'費用対効果を考慮。',value:'優先度：低'},
+{name:'HMB',goals:['recovery'],e:'mixed',effect:'初心者や一部の条件で研究があるが、トレーニング経験者の筋肥大への効果は不確実。',use:'継続使用前に費用対効果を確認。',risk:'高価な製品もある。',value:'優先度：低'},
+{name:'マルチビタミン・ミネラル',goals:['health'],e:'mixed',effect:'食事で不足する微量栄養素を補えるが、十分な栄養状態で筋肥大が増える根拠は乏しい。',use:'不足しやすい栄養素と食生活を確認。',risk:'脂溶性ビタミンやミネラルの過剰摂取・重複配合に注意。',value:'優先度：不足状況次第'},
+{name:'ビタミンD',goals:['health'],e:'mixed',effect:'欠乏している場合の骨・筋機能の維持に重要。十分な人の筋肥大目的での追加効果は不確実。',use:'日光曝露・食事・必要なら検査結果を参考にする。',risk:'過剰摂取による高カルシウム血症に注意。',value:'優先度：欠乏時'},
+{name:'鉄',goals:['health'],e:'mixed',effect:'鉄欠乏性貧血などがある場合の改善に役立つ。欠乏がない人の運動能力を高める目的では推奨しない。',use:'疲労・息切れなどがある場合は血液検査を優先。',risk:'便秘・吐き気、過剰摂取。自己判断で長期使用しない。',value:'優先度：検査で不足が判明した場合'},
+{name:'マグネシウム',goals:['health','recovery'],e:'mixed',effect:'不足時の栄養補給に有用。十分に摂れている人の筋肥大・睡眠改善効果は明確でない。',use:'食品からの摂取を基本に、サプリは必要性を確認。',risk:'下痢や腹痛。腎機能低下時は蓄積に注意。',value:'優先度：不足時'},
+{name:'オメガ3（EPA・DHA）',goals:['health','recovery'],e:'mixed',effect:'魚を食べる機会が少ない場合の脂肪酸補給。筋肥大や筋肉痛への効果は一貫しない。',use:'魚の摂取状況と製品のEPA・DHA量を確認。',risk:'胃腸症状。抗凝固薬などを服用中は相談。',value:'優先度：食生活次第'},
+{name:'L-カルニチン',goals:['cut'],e:'mixed',effect:'脂肪燃焼・減量への効果は限定的で、筋トレ中の体脂肪が大きく減るとは限らない。',use:'食事・運動・睡眠の改善を優先。',risk:'吐き気、腹痛、下痢、体臭変化など。大量摂取を避ける。',value:'優先度：低'},
+{name:'グルタミン',goals:['recovery'],e:'mixed',effect:'特定の臨床状況では役割があるが、健康な筋トレ実施者の筋肥大・回復への追加効果は限定的。',use:'タンパク質の充足を先に確認。',risk:'高用量の自己判断使用は避ける。',value:'優先度：低'},
+{name:'食物繊維サプリ（サイリウム等）',goals:['health'],e:'mixed',effect:'便通改善に役立つ場合があるが、腹部膨満が強い人では悪化することも。',use:'少量から、水分とともに。食品からの摂取も検討。',risk:'腹痛・強い膨満・腸閉塞が疑われる場合は使わず受診。',value:'優先度：症状次第'}
+];
+const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function showBrands(){let type=document.getElementById('v5ProteinType').value,budget=document.getElementById('v5ProteinBudget').value,need=document.getElementById('v5ProteinNeed').value;let found=brands.filter(b=>(type==='all'||b[2].split(',').includes(type))&&(budget==='all'||b[3]<=Number(budget))&&(need==='all'||(need==='stomach'?b[2].includes('WPI')||b[2].includes('SOY'):b[4]===need)));document.getElementById('v5ProteinCards').innerHTML=found.length?found.map(b=>`<article class="v5-card"><small>${esc(b[1])} · ${b[3]===1?'低価格寄り':b[3]===2?'中価格帯':'高価格帯も含む'}</small><h3>${esc(b[0])}</h3><div>${b[2].split(',').map(t=>`<span class="v5-pill">${esc(t)}</span>`).join('')}</div><p>${esc(b[5])}</p><p><b>向いている人：</b>${esc(b[6])}</p><a href="${b[7]}" target="_blank" rel="noopener noreferrer">公式サイトを見る ↗</a></article>`).join(''):'<p>該当候補がありません。条件を緩めてください。</p>'}
+function showSupp(){let goal=document.getElementById('v5SuppGoal').value,ev=document.getElementById('v5Evidence').value;let found=supps.filter(s=>(goal==='all'||s.goals.includes(goal))&&(ev==='all'||s.e===ev));document.getElementById('v5SuppCards').innerHTML=found.map(s=>`<article class="v5-card"><small>${s.e==='strong'?'根拠：比較的強い（用途限定）':'根拠：条件付き・限定的'}</small><h3>${esc(s.name)}</h3><span class="v5-pill">${esc(s.value)}</span><p><b>期待できること：</b>${esc(s.effect)}</p><p><b>選び方・使い方：</b>${esc(s.use)}</p><p><b>注意点：</b>${esc(s.risk)}</p></article>`).join('')}
+['v5ProteinType','v5ProteinBudget','v5ProteinNeed'].forEach(id=>document.getElementById(id).addEventListener('change',showBrands));['v5SuppGoal','v5Evidence'].forEach(id=>document.getElementById(id).addEventListener('change',showSupp));showBrands();showSupp();
+})();
+</script></body></html>
